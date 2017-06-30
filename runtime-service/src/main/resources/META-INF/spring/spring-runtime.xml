@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans.xsd">   
+
+
+	<bean class="com.neusoft.hp.runtime.factory.impl.SimpleHandlerFactoryImpl">
+	</bean>
+
+	<bean class="com.neusoft.hp.runtime.factory.impl.SimpleMapperFactoryImpl">
+	</bean>
+	
+	<bean class="com.neusoft.hp.runtime.dyn.impl.DynBeanFactoryImpl">
+	</bean>
+	
+	<bean class="com.neusoft.hp.runtime.handler.HandlerChain"></bean>
+	
+	<bean class="com.neusoft.hp.runtime.service.processor.RuntimeEntityProcessor"></bean>
+	
+	<bean id="querySqlByOwner"  class="com.neusoft.hp.runtime.service.impl.QuerySqlByOwnerImpl"></bean>
+	
+	<bean class="com.neusoft.hp.runtime.spring.ExtBeanFactoryPostProcessor" ></bean>
+	<bean id="querySql" class="com.neusoft.hp.runtime.service.impl.QuerySqlImpl"></bean>
+	<bean id="runtimeEntityOperatorService" class="com.neusoft.hp.runtime.service.impl.RuntimeEntityOperatorServiceImpl"></bean>
+	<bean id="runtimeEntityQueryService" class="com.neusoft.hp.runtime.service.impl.RuntimeEntityQueryServiceImpl"></bean>	
+</beans>   

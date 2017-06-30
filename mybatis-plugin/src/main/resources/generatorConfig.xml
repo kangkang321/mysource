@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="test" targetRuntime="MyBatis3" defaultModelType="flat">
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>  
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin> 
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> 
+        <plugin type="com.neusoft.hp.mybatis.plugin.MyPlugin"></plugin>
+        <commentGenerator>
+            <!-- 这个元素用来去除指定生成的注释中是否包含生成的日期 false:表示保护 -->
+            <!-- 如果生成日期，会造成即使修改一个字段，整个实体类所有属性都会发生变化，不利于版本控制，所以设置为true -->
+            <property name="suppressDate" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false" />
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@192.168.138.111:1521:ora11g" userId="obj_designer" password="obj_designer">
+            </jdbcConnection>
+        <javaTypeResolver>
+            <!-- This property is used to specify whether MyBatis Generator should 
+                force the use of java.math.BigDecimal for DECIMAL and NUMERIC fields, -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.neusoft.designer.runtime.domain"
+            targetProject="target">
+            <property name="enableSubPackages" value="true" />
+            <property name="rootClass" value="com.neusoft.core.dao.GenDO" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="com.neusoft.designer.runtime.mapperxml"
+            targetProject="target">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+            targetPackage="com.neusoft.designer.runtime.mapper" targetProject="target">
+            <property name="enableSubPackages" value="true" />
+            <property name="rootInterface" value="com.neusoft.core.dao.GenDao" />
+        </javaClientGenerator>
+        
+        <!-- 要生成哪些表 -->
+        <!-- 子表一定要放到父表之前 -->
+        <!-- <table tableName="TC_ORDER_MATERIAL_DETAIL" domainObjectName="TcOrderMaterialDetail">
+        	<property name="objId" value="4D59DC1FF11D1DABE055000000000001"/>
+	        <property name="gid" value="4D59DC1FF11F1DABE055000000000001"/>
+	        <property name="refKey" value="TC_ORDER_GID"/>
+	        <property name="parentClass" value="TcOrder"/>
+        
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+             <columnOverride column="TC_ORDER_GID" property="tcOrderGid" javaType="java.lang.String" />
+             
+            <columnOverride column="MATERIAL_GID" property="materialGid" javaType="java.lang.String" >
+            	<property name="gid" value="4D59DC1FF1251DABE055000000000001"/> 
+            	<property name="type" value="2"/>
+            	<property name="value" value="4D95DE74D5AE6FD5E055000000000001"/>
+            </columnOverride>
+            <columnOverride column="QTY" property="qty" javaType="java.lang.Long" >
+            	<property name="gid" value="4D59DC1FF1261DABE055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="SUM" property="sum" javaType="java.math.BigDecimal" >
+            	<property name="gid" value="4D95DE74D5B36FD5E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler">
+        	</columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>
+        
+         <table tableName="TC_ORDER" domainObjectName="TcOrder">
+	        <property name="objId" value="4D59DC1FF11D1DABE055000000000001"/>
+	        <property name="gid" value="4D59DC1FF11E1DABF055000000000001"/>
+	        <property name="refKey" value=""/>
+	        <property name="subTables" value="TC_ORDER_MATERIAL_DETAIL"/>
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+            <columnOverride column="ORDER_CODE" property="orderCode" javaType="java.lang.String" >
+            	<property name="gid" value="4D59DC1FF1201DABE055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="ORDER_TYPE_GID" property="orderTypeGid" javaType="java.lang.String" >
+            	<property name="gid" value="4D59DC1FF1241DABE055000000000001"/> 
+            	<property name="type" value="2"/>
+            	<property name="value" value="4D95DE74D5AA6FD5E055000000000001"/>
+            </columnOverride>
+            <columnOverride column="ORDER_STATUES" property="orderStatues" javaType="java.lang.String" >
+            	<property name="gid" value="4D59DC1FF1201DABE055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="ORDER_DATE" property="orderDate" javaType="java.util.Date" >
+            	<property name="gid" value="4D59DC1FF1201DABE055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="SUB_GROUP" property="subGroup" javaType="java.lang.String" >
+            	<property name="gid" value="4D59DC1FF1201DABE055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="ORDER_NAME" property="orderName" javaType="java.lang.String" >
+            	<property name="gid" value="4DA81C05A66D05CDE055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="DEPT_NAME" property="deptName" javaType="java.lang.String" >
+            	<property name="gid" value="4DA81C05A66E05CDE055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>
+        
+        <table tableName="TC_ORDER_TYPE" domainObjectName="TcOrderType">
+         	<property name="objId" value="4D95DE74D5AB6FD5E055000000000001"/>
+	        <property name="gid" value="4D95DE74D5AA6FD5E055000000000001"/>
+	        
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+            <columnOverride column="CODE" property="code" javaType="java.lang.String" >
+            	<property name="gid" value="4D95DE74D5B46FD5E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="NAME" property="name" javaType="java.lang.String" >
+            	<property name="gid" value="4D95DE74D5B56FD5E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>
+        
+        
+        <table tableName="TC_ORDER_MATERIAL" domainObjectName="TcOrderMaterial">
+        	<property name="objId" value="4D95DE74D5AC6FD5E055000000000001"/>
+	        <property name="gid" value="4D95DE74D5B96FD5E055000000000001"/>
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            <columnOverride column="MATERIAL_NAME" property="materialName" javaType="java.lang.String" >
+            	<property name="gid" value="4D95DE74D5B66FD5E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="MATERIAL_CODE" property="materialCode" javaType="java.lang.String" >
+            	<property name="gid" value="4D95DE74D5B76FD5E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>
+        
+        <table tableName="TC_ORDER_MATERIAL_TYPE" domainObjectName="TcOrderMaterialType">
+        	<property name="objId" value="4D95DE74D5AD6FD5E055000000000001"/>
+	        <property name="gid" value="4D95DE74D5AF6FD5E055000000000001"/>
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            <columnOverride column="MATERIAL_TYPE_NAME" property="materialName" javaType="java.lang.String" >
+            	<property name="gid" value="4D95DE74D5B86FD5E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="MATERIAL_TYPE_CODE" property="materialCode" javaType="java.lang.String" >
+            	<property name="gid" value="4D95DE74D5B96FD5E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table> --> 
+        
+        
+        <table tableName="HP_AR_MATERIEL_PRODUCTION" domainObjectName="HpArMaterielProduction">
+        	<property name="objId" value="1e8668f8711b49dea8a230874b806cb0"/>
+	        <property name="gid" value="4EFE70E65EA20736E055000000000001"/>
+	        <property name="refKey" value="HP_AR_MATERIEL_GID"/>
+	        <property name="parentClass" value="HpArMateriel"/>
+        
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+             <columnOverride column="HP_AR_MATERIEL_GID" property="hpArMaterielGid" javaType="java.lang.String" />
+             
+            <columnOverride column="FIXED_LEAD_TIME" property="fixedLeadTime" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EAB0736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="FLEXIBLE_LEAD_TIME" property="flexibleLeadTime" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EAC0736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="PRODUCTION_LOT" property="productionLot" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EAD0736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="MIN_PRODUCTION" property="minProduction" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EAE0736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler">
+        	</columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table> 
+        
+        <table tableName="HP_AR_MATERIEL_TECHNOLOGY" domainObjectName="HpArMaterielTechnology">
+        	<property name="objId" value="1e8668f8711b49dea8a230874b806cb0"/>
+	        <property name="gid" value="4EFE70E65EA40736E055000000000001"/>
+	        <property name="refKey" value="HP_AR_MATERIEL_GID"/>
+	        <property name="parentClass" value="HpArMateriel"/>
+        
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+             <columnOverride column="HP_AR_MATERIEL_GID" property="hpArMaterielGid" javaType="java.lang.String" />
+             
+            <columnOverride column="MAIN_PROCESS_ROUTE" property="mainProcessRoute" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EAF0736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="MAIN_BOM" property="mainBom" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EB00736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="BAR_CODE" property="barCode" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EB10736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="SERIAL_NUMBER" property="serialNumber" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EB20736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler">
+        	</columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>
+        
+        <table tableName="HP_AR_MATERIEL_QUALITY" domainObjectName="HpArMaterielQuality">
+        	<property name="objId" value="1e8668f8711b49dea8a230874b806cb0"/>
+	        <property name="gid" value="4EFE70E65EA30736E055000000000001"/>
+	        <property name="refKey" value="HP_AR_MATERIEL_GID"/>
+	        <property name="parentClass" value="HpArMateriel"/>
+        
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+             <columnOverride column="HP_AR_MATERIEL_GID" property="hpArMaterielGid" javaType="java.lang.String" />
+             
+            <columnOverride column="IS_QUALITY_CONTROL" property="isQualityControl" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler">
+            	<property name="gid" value="4EFE70E65EB70736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="TEST_METHOD" property="testMethod" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EB80736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="TEST_STANDARD" property="testStandard" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EB90736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="TEST_TYPE" property="testType" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EBA0736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler">
+        	</columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>
+        
+        <table tableName="HP_AR_MATERIEL_LOGISTICS" domainObjectName="HpArMaterielLogistics">
+        	<property name="objId" value="1e8668f8711b49dea8a230874b806cb0"/>
+	        <property name="gid" value="4EFE70E65EA10736E055000000000001"/>
+	        <property name="refKey" value="HP_AR_MATERIEL_GID"/>
+	        <property name="parentClass" value="HpArMateriel"/>
+        
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+             <columnOverride column="HP_AR_MATERIEL_GID" property="hpArMaterielGid" javaType="java.lang.String" />
+             
+            <columnOverride column="STORE" property="store" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EB30736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="BAR_CODE" property="barCode" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EB40736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="SERIAL_NUMBER" property="serialNumber" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EB50736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="LOCATION" property="location" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EB60736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler">
+        	</columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>
+        
+        <table tableName="HP_AR_MATERIEL" domainObjectName="HpArMateriel">
+	        <property name="objId" value="1e8668f8711b49dea8a230874b806cb0"/>
+	        <property name="gid" value="3af6c789bde34db8a1987c248b5acd54"/>
+	        <property name="refKey" value=""/>
+	        <property name="subTables" value="HP_AR_MATERIEL_PRODUCTION,HP_AR_MATERIEL_TECHNOLOGY,HP_AR_MATERIEL_QUALITY,HP_AR_MATERIEL_LOGISTICS"/>
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+            <columnOverride column="HP_AR_MATERIEL_TYPE_GID" property="hpArMaterielTypeGid" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EA50736E055000000000001"/> 
+            	<property name="type" value="2"/>
+            	<property name="value" value="4EFEA3A1D3BE07B3E055000000000001"/>
+            </columnOverride>
+            <columnOverride column="HP_AR_MATERIEL_UNIT_GID" property="hpArMaterielUnitGid" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EA60736E055000000000001"/> 
+            	<property name="type" value="2"/>
+            	<property name="value" value="4EFEA3A1D3BF07B3E055000000000001"/>
+            </columnOverride>
+            <columnOverride column="MAT_CODE" property="matCode" javaType="java.lang.String" >
+            	<property name="gid" value="2b937bbe91ed4ab9b6701780dc4d7eed"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="MAT_NAME" property="matName" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EA70736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="MAT_CATEGORY" property="matCategory" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EA80736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="MAT_MODEL" property="matModel" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EA90736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="MAT_DESCRIPTION" property="matDescription" javaType="java.lang.String" >
+            	<property name="gid" value="4EFE70E65EAA0736E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>
+        
+      <table tableName="HP_AR_MATERIEL_TYPE" domainObjectName="HpArMaterielType">
+	        <property name="objId" value="4EFEA3A1D3BE07B3E055000000000001"/>
+	        <property name="gid" value="4EFEA3A1D3C007B3E055000000000001"/>
+	        <property name="refKey" value=""/>
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+            <columnOverride column="HP_AR_MATERIEL_TYPE_GID" property="hpArMaterielTypeGid" javaType="java.lang.String" >
+            	<property name="gid" value="4EFEA3A1D3C207B3E055000000000001"/> 
+            	<property name="type" value="2"/>
+            	<property name="value" value="4EFEA3A1D3BE07B3E055000000000001"/>
+            </columnOverride>
+            <columnOverride column="TYPE_CODE" property="typeCode" javaType="java.lang.String" >
+            	<property name="gid" value="4EFEA3A1D3C607B3E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="TYPE_NAME" property="typeName" javaType="java.lang.String" >
+            	<property name="gid" value="4EFEA3A1D3C707B3E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="TYPE_DESCRIPTION" property="typeDescription" javaType="java.lang.String" >
+            	<property name="gid" value="4EFEA3A1D3C807B3E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>  
+        
+        <table tableName="HP_AR_MATERIEL_UNIT" domainObjectName="HpArMaterielUnit">
+	        <property name="objId" value="4EFEA3A1D3BF07B3E055000000000001"/>
+	        <property name="gid" value="4EFEA3A1D3C107B3E055000000000001"/>
+	        <property name="refKey" value=""/>
+            <generatedKey column="GID" sqlStatement="select SYS_GUID() from dual"/>
+            
+            <columnOverride column="UNIT_CODE" property="unitCode" javaType="java.lang.String" >
+            	<property name="gid" value="4EFFA571A6D808F7E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="UNIT_NAME" property="unitName" javaType="java.lang.String" >
+            	<property name="gid" value="4EFFA571A6D908F7E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="ENG_NAME" property="engName" javaType="java.lang.String" >
+            	<property name="gid" value="4EFFA571A6DA08F7E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="UNIT_DIMENSION" property="unitDimension" javaType="java.lang.String" >
+            	<property name="gid" value="4EFFA571A6DB08F7E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="UNIT_DESCRIPTION" property="unitDescription" javaType="java.lang.String" >
+            	<property name="gid" value="4EFFA571A6DC08F7E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="IS_BASIC" property="isBasic" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler" >
+            	<property name="gid" value="4EFFA571A6DD08F7E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="CONVERSION_FACTOR" property="conversionFactor" javaType="java.lang.String" >
+            	<property name="gid" value="4EFFA571A6DE08F7E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+            <columnOverride column="DECIMAL_NUMBER" property="decimalNumber" javaType="java.lang.Long" >
+            	<property name="gid" value="4EFFA571A6DF08F7E055000000000001"/> 
+            	<property name="type" value="0"/>
+            </columnOverride>
+        	<columnOverride column="IS_ACTIVE" property="active" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        	<columnOverride column="IS_DELETE" property="delete" javaType="java.lang.Boolean" typeHandler="com.neusoft.core.dao.wrapper.BooleanTypeHandler"></columnOverride>
+        </table>
+    </context>
+</generatorConfiguration>

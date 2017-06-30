@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans.xsd   
+        http://code.alibabatech.com/schema/dubbo   
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd   
+        ">
+
+	<dubbo:application name="designer"></dubbo:application>
+	<dubbo:registry address="${dubbo.registry.address}" port="${dubbo.registry.port}"></dubbo:registry>
+
+	<dubbo:reference id="queryService" interface="com.neusfot.designer.client.IQueryService" group="designer" version="0.0.1-SNAPSHOT"></dubbo:reference>
+	<dubbo:reference id="enumService" interface="com.neusoft.md.dictionary.client.IDictEnumValueService" group="md" version="0.0.1"></dubbo:reference>
+</beans>   

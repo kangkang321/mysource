@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans.xsd   
+        http://code.alibabatech.com/schema/dubbo   
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd   
+        ">
+
+	<!-- 试试id，如果id行不通name就不能通过disconf配置 -->
+	<dubbo:consumer id="consumer" generic="${dubbo.consumer.generic}"
+	check="${dubbo.consumer.check}" proxy="${dubbo.consumer.proxy}"
+	listener="${dubbo.consumer.listener}" filter="${dubbo.consumer.filter}"
+	init="${dubbo.consumer.init}" registry="${dubbo.consumer.registry}"
+	cache="${dubbo.consumer.cache}" validation="${dubbo.consumer.validation}"
+	actives="${dubbo.consumer.actives}"></dubbo:consumer>
+</beans>   

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans.xsd   
+        http://code.alibabatech.com/schema/dubbo   
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd   
+        ">
+
+	<!-- 试试id，如果id行不通name就不能通过disconf配置 -->
+	<dubbo:registry id="reg" address="${dubbo.registry.address}"
+		protocol="${dubbo.registry.protocol}" port="${dubbo.registry.port}"
+		username="${dubbo.registry.username}" password="${dubbo.registry.password}"
+		transport="${dubbo.registry.transport}" timeout="${dubbo.registry.timeout}"
+		session="${dubbo.registry.session}"
+		file="${dubbo.registry.file}" wait="${dubbo.registry.wait}"
+		check="${dubbo.registry.check}" register="${dubbo.registry.register}"
+		subscribe="${dubbo.registry.subscribe}" dynamic="${dubbo.registry.dynamic}"></dubbo:registry>
+</beans>   

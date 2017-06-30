@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans.xsd   
+        http://code.alibabatech.com/schema/dubbo   
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd   
+        ">
+
+	<!-- 试试id，如果id行不通name就不能通过disconf配置 -->
+	<dubbo:protocol id="dubbo" name="${dubbo.protocol.name}"
+		port="${dubbo.protocol.port}" threadpool="${dubbo.protocol.threadpool}"
+		threads="${dubbo.protocol.threads}" iothreads="${dubbo.protocol.iothreads}" serialization="${dubbo.protocol.serialization}"
+		accesslog="${dubbo.protocol.accesslog}" transporter="${dubbo.protocol.transporter}"
+		server="${dubbo.protocol.server}" client="${dubbo.protocol.client}"
+		dispatcher="${dubbo.protocol.dispatcher}" queues="${dubbo.protocol.queues}" 
+		charset="${dubbo.protocol.charset}"></dubbo:protocol>
+</beans>   
